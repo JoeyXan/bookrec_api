@@ -31,23 +31,23 @@ st.sidebar.caption("Sugerencia: en 'Usar API', corre previamente: `uvicorn app.m
 
 # ---------- Helpers API ----------
 def api_health(base_url: str):
-    r = requests.get(f"{base_url.rstrip('/')}/health", timeout=10)
+    r = requests.get(f"{base_url.rstrip('/')}/health", timeout=60)
     r.raise_for_status()
     return r.json()
 
 def api_recommend(base_url: str, user_id: str, k: int):
     payload = {"user_id": user_id, "k": k}
-    r = requests.post(f"{base_url.rstrip('/')}/recommend", json=payload, timeout=10)
+    r = requests.post(f"{base_url.rstrip('/')}/recommend", json=payload, timeout=60)
     r.raise_for_status()
     return r.json()
 
 def api_similar(base_url: str, book_id: str, k: int):
-    r = requests.get(f"{base_url.rstrip('/')}/similar/{book_id}", params={"k": k}, timeout=10)
+    r = requests.get(f"{base_url.rstrip('/')}/similar/{book_id}", params={"k": k}, timeout=60)
     r.raise_for_status()
     return r.json()
 
 def api_search(base_url: str, q: str):
-    r = requests.get(f"{base_url.rstrip('/')}/search", params={"q": q}, timeout=10)
+    r = requests.get(f"{base_url.rstrip('/')}/search", params={"q": q}, timeout=60)
     r.raise_for_status()
     return r.json()
 
